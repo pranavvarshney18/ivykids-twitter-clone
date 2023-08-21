@@ -21,9 +21,20 @@
                     <li id="post-<%=post._id%>"><p>
                         
 
-                        <small class="user-name"><%= post.user.name %> posted</small> <br>
+                        <small class="user-name"><%= post.user.name %> posted</small> 
 
-                        <p class="post-content">
+                        <% if(locals.user.id == post.user._id){ %>
+                            
+                            <a href="" class="edit-button" id="edit-button-<%=post._id%>"><i class="fa-regular fa-pen-to-square"></i>edit</a>
+                            
+                                <form action="/post/edit/?postId=<%=post._id%>&userId=<%=locals.user.id%>" method="POST" class="hide edit-section" id="edit-section-<%=post._id%>" value="<%=post.content%>">
+                                    <textarea name="content" id="" cols="30" rows="3" ><%=post.content%></textarea>
+                                    <button type="submit">submit</button>
+                                </form>
+                            
+                        <% } %>
+
+                        <p class="post-content" id="post-content-<%=post._id%>">
                             <%= post.content %>
                         </p>
 
@@ -69,3 +80,4 @@
 
 <script src="/js/home_posts.js"></script>
 <script src="/js/friendship_toggler.js"></script>
+<script src="/js/edit_post.js"></script>

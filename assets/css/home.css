@@ -36,7 +36,7 @@
           width: 10vw;
           transition: 0.2s all; }
         #main-body #feed-posts #posting-area form button:hover {
-          color: lightgray; }
+          color: black; }
     #main-body #feed-posts #posts-list-container ul {
       box-sizing: border-box; }
       #main-body #feed-posts #posts-list-container ul li {
@@ -74,6 +74,14 @@
           position: relative;
           top: 1.5vh;
           margin-left: 1vw; }
+        #main-body #feed-posts #posts-list-container ul li .edit-button {
+          display: inline-block;
+          margin-left: 25vw;
+          color: black;
+          text-decoration: none;
+          transition: 0.2s all; }
+        #main-body #feed-posts #posts-list-container ul li .edit-button:hover {
+          color: #2e9cc7; }
   #main-body #user-list {
     width: 35%;
     box-shadow: rgba(50, 50, 93, 0.25) 0px 13px 27px -5px, rgba(0, 0, 0, 0.3) 0px 8px 16px -8px;
@@ -106,7 +114,8 @@
           transition: 0.2s all;
           box-shadow: rgba(0, 0, 0, 0.15) 2.4px 2.4px 3.2px; }
         #main-body #user-list ul li form button:hover {
-          background-color: gray; }
+          background-color: gray;
+          color: white; }
 
 .follow-class {
   background-color: #2e9cc7;
@@ -115,5 +124,8 @@
   transition: 0.2s all; }
 
 .follow-class:hover {
-  color: lightgray !important;
+  color: black !important;
   background-color: #2e9cc7 !important; }
+
+.hide {
+  display: none !important; }
