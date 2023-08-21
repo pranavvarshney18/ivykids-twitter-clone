@@ -34,15 +34,22 @@
     let newPostDom = function(post){
         return $(`
         <li id="post-${post._id}"><p>
-            <!-- a user can only delete its own post  -->
+                            
 
-                <small><a href="/post/destroy/${post._id}" class="delete-post-button">X</a></small>
-            
+            <small class="user-name">${ post.user.name } posted</small> <br>
+
+            <p class="post-content">
             ${post.content}
-            <br>
-            <small>${ post.user.name }</small>
+            </p>
+
+            <small class="time">${post.createdAt }</small>
+
+            <!-- a user can only delete its own post  -->
+           
+                <small><a href="/post/destroy/${post._id}" class="delete-post-button"><i class="fa-regular fa-trash-can"></i></a></small>
+            
         </p></li>
-        `);
+        `)
     }
 
 

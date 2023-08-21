@@ -57,3 +57,29 @@ module.exports.destroy = async function(req, res){
         return res.redirect('back');
     }
 }
+
+
+//to edit a post
+// module.exports.edit = async function(req, res){
+//     if(req.query.postUserId == req.user.id){
+//         try{
+//             let post = await Post.findById(req.query.postId);
+            
+//             if(!post){
+//                 req.flash('error', 'Post does not exist!!');
+//                 return res.status(401).send("Unauthorised");
+//             }
+
+            
+//         }
+//         catch(err){
+//             req.flash('error in editing post ', err);
+//             console.log('error in editing post ', err);
+//             return res.redirect('back');
+//         }
+//     }
+//     else{
+//         req.flash('error', 'Unauthorized!!');
+//         return res.status(401).send("Unauthorised");
+//     }
+// }

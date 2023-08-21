@@ -1,28 +1,41 @@
 <link rel="stylesheet" href="/css/home.css">
 
-<h1> <%= title %></h1>
+<br><br>
+<br><br>
 
 <section id="main-body">
 
     <section id="feed-posts">
-        <h4>POSTS</h4>
-        <form action="/post/create" method="POST" id="new-post-form">
-            <textarea name="content" id="" cols="30" rows="3" placeholder="type here..."></textarea>
-            <button type="submit">Post</button>
-        </form>
+        <div id="posting-area">
+            <h4>POST HERE</h4>
+            <form action="/post/create" method="POST" id="new-post-form">
+                <textarea name="content" id="" cols="60" rows="4" placeholder="type here..."></textarea>
+                <button type="submit">Post</button>
+            </form>
+        </div>
     
         <!-- show all posts  -->
         <div id="posts-list-container">
-            <ul>
+            <ul type="none">
                 <% for(post of posts){ %>
                     <li id="post-<%=post._id%>"><p>
+                        
+
+                        <small class="user-name"><%= post.user.name %> posted</small> <br>
+
+                        <p class="post-content">
+                            <%= post.content %>
+                        </p>
+
+                        <small class="time"><%= post.createdAt %></small>
                         <!-- a user can only delete its own post  -->
                         <% if(locals.user.id == post.user._id){ %>
-                            <small><a href="/post/destroy/<%= post._id %>" class="delete-post-button">X</a></small>
+                            <small><a href="/post/destroy/<%= post._id %>" class="delete-post-button"><i class="fa-regular fa-trash-can"></i></a></small>
                         <% } %>
-                        <%= post.content %>
-                        <br>
-                        <small><%= post.user.name %></small>
+                        
+                        <!-- <% if(locals.user.id == post.user._id){ %>
+                            <small><a href="/post/edit/?postId=<%= post._id %>&postUserId=<%= post.user._id %>" class="edit-post-button">edit</a></small>
+                        <% } %> -->
                     </p></li>
                 <% } %>
             </ul>
@@ -31,7 +44,7 @@
     
     <section id="user-list">
         <h3>Users</h3>
-        <ul>
+        <ul type="none">
             <% for(usr of allUsers){ %>
                 <li id="user-<%= usr._id %>"> <p>
                     <%= usr.name %> 
@@ -39,7 +52,7 @@
                     <% if(locals.user.id != usr._id){ %>
                           <form action="/friendship/toggle-friendship/<%= usr._id %>" class="friendship-toggle-button" method="POST">
                             <% if(usr.friends.includes(locals.user.id)){ %>
-                                <button type="submit">unfollow</button>
+                                <button type="submit" class="follow-class">following</button>
                             <% }else{ %>
                                 <button type="submit">follow</button>
                             <% }%>

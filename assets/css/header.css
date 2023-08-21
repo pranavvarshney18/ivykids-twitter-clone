@@ -1,0 +1,28 @@
+header {
+  background-color: #2e9cc7;
+  padding: 2px;
+  font-weight: 800;
+  font-size: larger;
+  margin: -1vh;
+  width: 99.9vw;
+  position: fixed; }
+  header ul {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between; }
+    header ul li {
+      position: relative;
+      right: 2vw; }
+      header ul li a {
+        text-decoration: none;
+        color: whitesmoke;
+        transition: 0.2s all; }
+        header ul li a i {
+          font-size: larger; }
+      header ul li a:hover {
+        color: #d4d0d0; }
+    header ul #heading {
+      font-style: italic;
+      color: white;
+      font-weight: 900;
+      font-size: larger; }

@@ -1,0 +1,38 @@
+header{
+    background-color: #2e9cc7;
+    padding: 2px;
+    font-weight: 800;
+    font-size: larger;
+    margin: -1vh;
+    width: 99.9vw;
+    position: fixed;
+    ul{
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        li{
+            position: relative;
+            right: 2vw;
+            a{
+                text-decoration: none;
+                color: whitesmoke;
+
+                i{
+                    font-size: larger;                
+                }
+                transition: 0.2s all;
+            }
+            a:hover{
+                color: rgb(212, 208, 208);
+            }
+
+        }
+
+        #heading{
+            font-style: italic;
+            color: white;
+            font-weight: 900;
+            font-size: larger;
+        }
+    }
+}

@@ -9,9 +9,11 @@
                 success: function(data){
                     if(data.data.removeFriend){
                         $(' button', link).html('follow');
+                        $(' button', link).removeClass('follow-class');
                     }
                     else{
-                        $(' button', link).html('unfollow');
+                        $(' button', link).html('following');
+                        $(' button', link).addClass('follow-class');
                     }
                 },
                 error: function(err){

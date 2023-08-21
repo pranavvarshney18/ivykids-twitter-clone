@@ -1,0 +1,4 @@
+body {
+  background-color: whitesmoke; }
+  body button, body a {
+    cursor: pointer; }
