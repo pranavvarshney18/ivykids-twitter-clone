@@ -11,12 +11,14 @@ passport.use(new LocalStrategy({
         try{
             let user = await User.findOne({email: email});
             if(!user || user.password != password){
+                req.flash('error', 'Invalid Credentials');
                 console.log('Invalid credentials');
                 return done(null, false);
             }
             return done(null, user);
         }
         catch(err){
+            req.flash('error', 'error in finding user');
             console.log('error in finding user --> Passport', err);
             return done(err);
         }

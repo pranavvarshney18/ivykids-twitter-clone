@@ -8,6 +8,8 @@ const passport = require('passport');
 const passportLocal = require('./config/passport-local-strategy');
 const MongoStore = require('connect-mongo')(session);
 const sassMiddleware = require('node-sass-middleware');
+const flash = require('connect-flash');
+const customMware = require('./config/middleware');
 
 
 app.use(express.urlencoded({extended:false}));
@@ -57,6 +59,9 @@ app.use(passport.session());
 
 //user can be accessable in views (we have set locals.user in checkAuthentication middleware in passport config)
 app.use(passport.setAuthenticatedUser); // now locals.user can be used in views
+
+app.use(flash());
+app.use(customMware.setFlash);
 
 
 //use express router
