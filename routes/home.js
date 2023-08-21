@@ -6,6 +6,7 @@ const homeController = require('../controllers/home_controller');
 
 router.use('/user', require('./user'));
 router.use('/post', require('./post'));
+router.use('/friendship', require('./friendship'));
 
 router.get('/', passport.checkAuthentication, homeController.home);
 

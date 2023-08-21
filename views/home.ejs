@@ -2,30 +2,57 @@
 
 <h1> <%= title %></h1>
 
-<section id="feed-posts">
-    <h4>POSTS</h4>
-    <form action="/post/create" method="POST" id="new-post-form">
-        <textarea name="content" id="" cols="30" rows="3" placeholder="type here..."></textarea>
-        <button type="submit">Post</button>
-    </form>
+<section id="main-body">
 
-    <!-- show all posts  -->
-    <div id="posts-list-container">
+    <section id="feed-posts">
+        <h4>POSTS</h4>
+        <form action="/post/create" method="POST" id="new-post-form">
+            <textarea name="content" id="" cols="30" rows="3" placeholder="type here..."></textarea>
+            <button type="submit">Post</button>
+        </form>
+    
+        <!-- show all posts  -->
+        <div id="posts-list-container">
+            <ul>
+                <% for(post of posts){ %>
+                    <li id="post-<%=post._id%>"><p>
+                        <!-- a user can only delete its own post  -->
+                        <% if(locals.user.id == post.user._id){ %>
+                            <small><a href="/post/destroy/<%= post._id %>" class="delete-post-button">X</a></small>
+                        <% } %>
+                        <%= post.content %>
+                        <br>
+                        <small><%= post.user.name %></small>
+                    </p></li>
+                <% } %>
+            </ul>
+        </div>
+    </section>
+    
+    <section id="user-list">
+        <h3>Users</h3>
         <ul>
-            <% for(post of posts){ %>
-                <li id="post-<%=post._id%>"><p>
-                    <!-- a user can only delete its own post  -->
-                    <% if(locals.user.id == post.user._id){ %>
-                        <small><a href="/post/destroy/<%= post._id %>" class="delete-post-button">X</a></small>
-                    <% } %>
-                    <%= post.content %>
-                    <br>
-                    <small><%= post.user.name %></small>
+            <% for(usr of allUsers){ %>
+                <li id="user-<%= usr._id %>"> <p>
+                    <%= usr.name %> 
+                    
+                    <% if(locals.user.id != usr._id){ %>
+                          <form action="/friendship/toggle-friendship/<%= usr._id %>" class="friendship-toggle-button" method="POST">
+                            <% if(usr.friends.includes(locals.user.id)){ %>
+                                <button type="submit">unfollow</button>
+                            <% }else{ %>
+                                <button type="submit">follow</button>
+                            <% }%>
+                          </form>
+                    <% } %>      
                 </p></li>
             <% } %>
         </ul>
-    </div>
+    </section>
+
+
 </section>
 
 
 <script src="/js/home_posts.js"></script>
+<script src="/js/friendship_toggler.js"></script>

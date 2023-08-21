@@ -1,14 +1,21 @@
 const Post = require('../models/post');
+const User = require('../models/user');
 
 module.exports.home = async function(req, res){
     try{
-        let posts = await Post.find()
+        let userIds = req.user.friends;
+        userIds.push(req.user.id);
+        let posts = await Post.find({user: {$in: userIds}})
                               .sort('-createdAt')
                               .populate('user', 'name');
 
+        let allUsers = await User.find()
+                                 .sort({name: 'asc'});
+
         return res.render('home', {
             title: 'Twitter Clone',
-            posts: posts
+            posts: posts,
+            allUsers: allUsers
         });
     }
     catch(err){

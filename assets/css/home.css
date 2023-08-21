@@ -1,2 +1,8 @@
-body {
-  background-color: white; }
+#main-body {
+  display: flex;
+  border-bottom: 1px solid black; }
+  #main-body #feed-posts {
+    width: 60%;
+    border-right: 1px solid gray; }
+  #main-body #user-list {
+    width: 40%; }
