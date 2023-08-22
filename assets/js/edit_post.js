@@ -1,4 +1,4 @@
-{
+
     let toggleEditSection = function(link){
         $(link).click(function(e){
             e.preventDefault();
@@ -60,4 +60,3 @@
 
     callAllEditSubmissionButtons();
     callAllEditButtons();
-}

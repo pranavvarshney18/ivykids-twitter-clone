@@ -14,7 +14,8 @@ module.exports.create = async function(req, res){
             newPost = await newPost.populate('user', 'name');
             return res.status(200).json({
                 data:{
-                    post: newPost
+                    post: newPost,
+                    userId: req.user._id
                 },
                 message: 'Post created!!!'
             });

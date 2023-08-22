@@ -1,4 +1,4 @@
-{
+
     let createPost = function(){
         let newPostForm = $('#new-post-form');
 
@@ -10,10 +10,14 @@
                 url: '/post/create',
                 data: newPostForm.serialize(),
                 success: function(data){
-                    let newPost = newPostDom(data.data.post);
+                    let newPost = newPostDom(data.data.post, data.data.userId);
                     $('#posts-list-container>ul').prepend(newPost);
 
                     deletePost($(' .delete-post-button', newPost));
+
+                    //call edit functionality
+                    toggleEditSection($(' .edit-button', newPost));
+                    editPost($(' .edit-section', newPost));
 
                     //add flash message
                     new Noty({
@@ -31,14 +35,21 @@
         });
     }
 
-    let newPostDom = function(post){
+    let newPostDom = function(post, userId){
         return $(`
         <li id="post-${post._id}"><p>
                             
 
-            <small class="user-name">${ post.user.name } posted</small> <br>
+            <small class="user-name">${ post.user.name } posted</small> 
 
-            <p class="post-content">
+                    
+                    <a href="" class="edit-button" id="edit-button-${post._id}"><i class="fa-regular fa-pen-to-square"></i>edit</a>         
+                    <form action="/post/edit/?postId=${post._id}&userId=${userId}" method="POST" class="hide edit-section" id="edit-section-${post._id}" value="${post.content}">
+                        <textarea name="content" id="" cols="30" rows="3" >${post.content}</textarea>
+                        <button type="submit">submit</button>
+                    </form>
+
+            <p class="post-content" id="post-content-${post._id}">
             ${post.content}
             </p>
 
@@ -89,4 +100,3 @@
 
     makeAllPostsDynamic();
     createPost();
-}

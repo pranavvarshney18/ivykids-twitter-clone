@@ -1,4 +1,4 @@
-{
+
     let ajaxToggleFriendship = function(link){
         $(link).submit(function(e){
             e.preventDefault();
@@ -31,4 +31,3 @@
     }
 
     makeAllFriendshipsDynamic();
-}
