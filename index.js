@@ -21,13 +21,13 @@ app.set('layout extractStyles', true);
 app.set('layout extractScripts', true);
 
 //setting up sass/scss
-app.use(sassMiddleware({
-    src: './assets/scss',
-    dest: './assets/css',
-    // debug: true,
-    outputStyle: 'extended', 
-    prefix: '/css'
-}));
+// app.use(sassMiddleware({
+//     src: './assets/scss',
+//     dest: './assets/css',
+//     // debug: true,
+//     outputStyle: 'extended', 
+//     prefix: '/css'
+// }));
 //all static files are present inside assets folder
 app.use(express.static('./assets'));
 

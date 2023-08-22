@@ -8,4 +8,4 @@ FEATURES
 5. user can edit and delete its own posts
 
 SKILLS USED 
-nodeJs, expressJs, EJS, AJAX, html, css, javascript and jQuery
+nodeJs, expressJs, EJS, AJAX, html, css, scss, javascript and jQuery
