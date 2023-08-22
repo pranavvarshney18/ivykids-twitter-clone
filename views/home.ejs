@@ -54,7 +54,7 @@
     </section>
     
     <section id="user-list">
-        <h3>Users</h3>
+        <h3>Users</h3><small style="display:block;color:gray; font-size:0.7rem; text-decoration: none; text-align: center;">(follow to view their posts)</small>
         <ul type="none">
             <% for(usr of allUsers){ %>
                 <li id="user-<%= usr._id %>"> <p>
@@ -79,6 +79,6 @@
 
 
 <script src="/js/edit_post.js"></script>
-<script src="/js/friendship_toggler.js"></script>
 <script src="/js/home_posts.js"></script>
+<script src="/js/friendship_toggler.js"></script>
 

@@ -82,6 +82,21 @@
           transition: 0.2s all; }
         #main-body #feed-posts #posts-list-container ul li .edit-button:hover {
           color: #2e9cc7; }
+        #main-body #feed-posts #posts-list-container ul li .edit-section {
+          margin-left: 2vw; }
+          #main-body #feed-posts #posts-list-container ul li .edit-section textarea {
+            border: 1px solid black;
+            text-align: center;
+            padding: 2px;
+            border-radius: 20px;
+            box-shadow: 2px 2px gray; }
+          #main-body #feed-posts #posts-list-container ul li .edit-section button {
+            padding: 5px;
+            background-color: #2e9cc7;
+            color: white;
+            border-radius: 20px;
+            border: none;
+            box-shadow: 1px 1px gray; }
   #main-body #user-list {
     width: 35%;
     box-shadow: rgba(50, 50, 93, 0.25) 0px 13px 27px -5px, rgba(0, 0, 0, 0.3) 0px 8px 16px -8px;

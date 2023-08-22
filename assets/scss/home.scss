@@ -109,6 +109,25 @@
                     .edit-button:hover{
                         color: #2e9cc7
                     }
+
+                    .edit-section{
+                        margin-left: 2vw;
+                        textarea{
+                            border: 1px solid black;
+                            text-align: center;
+                            padding: 2px;
+                            border-radius: 20px;
+                            box-shadow: 2px 2px gray;
+                        }
+                        button{
+                            padding: 5px;
+                            background-color: #2e9cc7;
+                            color: white;
+                            border-radius: 20px;
+                            border: none;
+                            box-shadow: 1px 1px gray;
+                        }
+                    }
                 }
             }
         }
