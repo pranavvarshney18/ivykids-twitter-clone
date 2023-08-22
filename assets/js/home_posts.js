@@ -85,6 +85,13 @@
                 },
                 error: function(err){
                     console.log(err);
+                    new Noty({
+                        theme: 'relax',
+                        text: 'Unauthorized',
+                        type: 'error',
+                        layout: 'topRight',
+                        timeout: 1500,
+                    }).show();
                 }
             })
         })

@@ -18,19 +18,32 @@
                     
                     //posts should reload with ajax on toggling friendship
                     let arr = [];
-                    for(post of data.data.posts){
-                        arr.push(reloadPosts(post, data.data.userId));
-                    }
-
                     $('#posts-list-container>ul').html('');
-                    for(ele of arr){
-                        $('#posts-list-container>ul').append(ele);
-                        deletePost($(' .delete-post-button', ele));
+                    for(post of data.data.posts){
+                        if(post.user._id != data.data.userId){
+                            let ele = reloadPosts(post, data.data.userId);
+                            $('#posts-list-container>ul').append(ele);
+                        }
+                        else{
+                            let ele = reloadPostsofHomeUser(post, data.data.userId);
+                            $('#posts-list-container>ul').append(ele);
+                            deletePost($(' .delete-post-button', ele));
 
-                        //call edit functionality
-                        toggleEditSection($(' .edit-button', ele));
-                        editPost($(' .edit-section', ele));
+                            //call edit functionality
+                            toggleEditSection($(' .edit-button', ele));
+                            editPost($(' .edit-section', ele));
+                        }
                     }
+
+                    // $('#posts-list-container>ul').html('');
+                    // for(ele of arr){
+                    //     $('#posts-list-container>ul').append(ele);
+                    //     deletePost($(' .delete-post-button', ele));
+
+                    //     //call edit functionality
+                    //     toggleEditSection($(' .edit-button', ele));
+                    //     editPost($(' .edit-section', ele));
+                    // }
                 },
                 error: function(err){
                     console.log(err.responseText);
@@ -39,7 +52,7 @@
         });
     }
 
-    let reloadPosts = function(post, userId){
+    let reloadPostsofHomeUser = function(post, userId){
         return $(`
         <li id="post-${post._id}"><p>
                             
@@ -62,6 +75,25 @@
             <!-- a user can only delete its own post  -->
            
                 <small><a href="/post/destroy/${post._id}" class="delete-post-button"><i class="fa-regular fa-trash-can"></i></a></small>
+            
+        </p></li>
+        `)
+    }
+
+    let reloadPosts = function(post, userId){
+        return $(`
+        <li id="post-${post._id}"><p>
+                            
+
+            <small class="user-name">${ post.user.name } posted</small> 
+
+
+            <p class="post-content" id="post-content-${post._id}">
+            ${post.content}
+            </p>
+
+            <small class="time">${post.createdAt }</small>
+
             
         </p></li>
         `)

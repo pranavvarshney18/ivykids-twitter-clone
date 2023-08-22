@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 
-mongoose.connect('mongodb://localhost/ivykids_twitter_clone');
+mongoose.connect('mongodb+srv://pranavvarshney18:QvrF3fNztj9DJnm5@cluster0.plgnm0r.mongodb.net/?retryWrites=true&w=majority');
 
 const db = mongoose.connection;
 

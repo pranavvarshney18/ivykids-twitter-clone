@@ -8,6 +8,15 @@
 
                     $(`#edit-section-${postId}`).removeClass('hide');
                     $(`#post-content-${postId}`).addClass('hide');
+                },
+                error: function(err){
+                    new Noty({
+                        theme: 'relax',
+                        text: 'Unauthorized',
+                        type: 'error',
+                        layout: 'topRight',
+                        timeout: 1500,
+                    }).show();
                 }
             })
 
