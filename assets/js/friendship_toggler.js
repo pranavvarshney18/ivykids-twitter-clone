@@ -35,15 +35,6 @@
                         }
                     }
 
-                    // $('#posts-list-container>ul').html('');
-                    // for(ele of arr){
-                    //     $('#posts-list-container>ul').append(ele);
-                    //     deletePost($(' .delete-post-button', ele));
-
-                    //     //call edit functionality
-                    //     toggleEditSection($(' .edit-button', ele));
-                    //     editPost($(' .edit-section', ele));
-                    // }
                 },
                 error: function(err){
                     console.log(err.responseText);
