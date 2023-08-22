@@ -3,8 +3,8 @@ const User = require('../models/user');
 
 module.exports.home = async function(req, res){
     try{
-        let userIds = req.user.friends;
-        userIds.push(req.user.id);
+        let userIds = await req.user.friends;
+        await userIds.push(req.user.id);
         let posts = await Post.find({user: {$in: userIds}})
                               .sort('-createdAt')
                               .populate('user', 'name');

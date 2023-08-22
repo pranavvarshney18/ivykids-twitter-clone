@@ -1,8 +1,7 @@
 #main-body {
   font-family: Arial, sans-serif;
   margin: -1vh;
-  display: flex;
-  border-bottom: 1px solid black; }
+  display: flex; }
   #main-body #feed-posts {
     width: 60%; }
     #main-body #feed-posts #posting-area {

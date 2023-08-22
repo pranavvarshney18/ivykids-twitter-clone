@@ -1,5 +1,6 @@
 const User = require('../models/user');
 const Friendship = require('../models/friendship');
+const Post = require('../models/post');
 
 module.exports.toggleFriendship = async function(req, res){
     try{
@@ -9,7 +10,8 @@ module.exports.toggleFriendship = async function(req, res){
             friends: req.params.friendId
         });
 
-
+        let posts = null;
+        let userIds = null;
         if(!friendship){
             //establish friendship
             let firstUser = await User.findById(req.user.id);
@@ -24,6 +26,13 @@ module.exports.toggleFriendship = async function(req, res){
                 from_user: firstUser._id,
                 to_user: secondUser._id
             });
+
+            //refresh posts of users with ajax
+            userIds = await firstUser.friends;
+            await userIds.push(req.user.id);
+            posts = await Post.find({user: {$in: userIds}})
+                                .sort('-createdAt')
+                                .populate('user', 'name');
 
         }
         //remove friendship
@@ -41,22 +50,34 @@ module.exports.toggleFriendship = async function(req, res){
                 });
             }
 
-            existingFriendship.deleteOne();
+            await existingFriendship.deleteOne();
 
             let firstUser = await User.findById(req.user.id);
             let secondUser = await User.findById(req.params.friendId);
 
             firstUser.friends.pull(secondUser._id);
-            firstUser.save();
+            await firstUser.save();
             secondUser.friends.pull(firstUser._id);
-            secondUser.save();
+            await secondUser.save();
+
+            //refresh posts of users with ajax
+            userIds = await firstUser.friends;
+            await userIds.push(req.user.id);
+            posts = await Post.find({user: {$in: userIds}})
+                                .sort('-createdAt')
+                                .populate('user', 'name');
         }
+
+        
+        
         
         //ajax request
         if(req.xhr){
             return res.status(200).json({
                 data: {
-                    removeFriend: removeFriend
+                    removeFriend: removeFriend,
+                    posts: posts,
+                    userId: req.user.id
                 },
                 message: 'friendship toggled'
             });
